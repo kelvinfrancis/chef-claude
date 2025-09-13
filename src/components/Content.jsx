@@ -1,19 +1,17 @@
-import React from "react";
+import React, { useState } from "react";
 
 export default function Content() {
-  const ingredients = ["Chicken", "Oregano", "Tomatoes"];
+  const [ingredients, setIngredients] = useState([]);
 
-  const addIngredient = () => {
-    const newIngredient = document.getElementById("ingredientInput");
-    ingredients.push(newIngredient.value);
-  };
+  const ingredientsListItems = ingredients.map((ingredient) => (
+    <li key={ingredient}>{ingredient}</li>
+  ));
 
-  const ingredientsListItems = ingredients.map((ingredient) => {
-    return <li key={ingredient}>{ingredient}</li>;
-  });
-
-  function handleSubmit() {
-    console.log("Form submited!");
+  function handleSubmit(event) {
+    event.preventDefault();
+    const formData = new FormData(event.currentTarget);
+    const newIngredient = formData.get("ingredient");
+    setIngredients((prevIngredients) => [...prevIngredients, newIngredient]);
   }
 
   return (
@@ -24,8 +22,9 @@ export default function Content() {
           placeholder="e.g. pepper"
           aria-label="Add ingredient"
           id="ingredientInput"
+          name="ingredient"
         />
-        <button onClick={addIngredient}>Add ingredient</button>
+        <button>Add ingredient</button>
       </form>
       <ul className="ingredient-list">{ingredientsListItems}</ul>
     </main>
