@@ -1,13 +1,17 @@
-import React from "react";
+
 
 export default function IngredientsList(props) {
+  const ingredientsListItems = props.ingredients.map((ingredient) => (
+    <li key={ingredient}>{ingredient}</li>
+  ));
+
   return (
     <>
       {props.ingredients.length > 0 && (
-        <section>
+        <section className="ingredients-list-container">
           <h2>Ingredients on hand:</h2>
           <ul className="ingredients-list" aria-live="polite">
-            {props.ingredientsListItems}
+            {ingredientsListItems}
           </ul>
           {props.ingredients.length > 3 && (
             <div className="get-recipe-container">
@@ -16,7 +20,7 @@ export default function IngredientsList(props) {
                 <p>Generate a recipe from your list of ingredients.</p>
               </div>
 
-              <button onClick={props.toggleButton}>Get a recipe</button>
+              <button onClick={props.toggleRecipeShown}>Get a recipe</button>
             </div>
           )}
         </section>

@@ -11,10 +11,6 @@ export default function Content() {
   ]);
   const [recipeShown, setRecipeShown] = React.useState(false);
 
-  const ingredientsListItems = ingredients.map((ingredient) => (
-    <li key={ingredient}>{ingredient}</li>
-  ));
-
   function addIngredient(formData) {
     const newIngredient = formData.get("ingredient");
     setIngredients((prevIngredients) => [...prevIngredients, newIngredient]);
@@ -37,11 +33,12 @@ export default function Content() {
         <button>Add ingredient</button>
       </form>
       {ingredients.length > 0 && (
-        <IngredientsList ingredients={ingredients} ingredientsListItems={ingredientsListItems} toggleButton={toggleRecipeShown} />
+        <IngredientsList
+          ingredients={ingredients}
+          toggleRecipeShown={toggleRecipeShown}
+        />
       )}
-      {recipeShown && (
-        <ClaudeRecipe />
-      )}
+      {recipeShown && <ClaudeRecipe />}
     </main>
   );
 }
