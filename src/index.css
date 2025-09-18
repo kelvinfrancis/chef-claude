@@ -28,7 +28,7 @@ header > h1 {
 
 main {
     padding: 30px 30px 10px;
-    margin: auto 27%;
+    max-width: 90%;
 }
 
 .add-ingredient-form {
