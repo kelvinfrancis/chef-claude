@@ -6,6 +6,7 @@ import getRecipeFromMistral from "../ai"
 export default function Content() {
   const [ingredients, setIngredients] = React.useState([]);
   const [recipe, setRecipe] = React.useState(false);
+  const recipeSection = React.useRef(null)
 
   function addIngredient(formData) {
     const newIngredient = formData.get("ingredient");
@@ -31,6 +32,7 @@ export default function Content() {
       </form>
       {ingredients.length > 0 && (
         <IngredientsList
+          ref={recipeSection}
           ingredients={ingredients}
           getRecipe={getRecipe}
         />
